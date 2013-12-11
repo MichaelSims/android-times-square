@@ -5,10 +5,14 @@ package com.squareup.timessquare;
 import java.util.Date;
 
 /** Describes the state of a particular date cell in a {@link MonthView}. */
-class MonthCellDescriptor {
+public class MonthCellDescriptor {
   public enum RangeState {
     NONE, FIRST, MIDDLE, LAST
   }
+
+    public enum ConfirmationState {
+        UNKNOWN, UNCONFIRMED, CONFIRMED
+    }
 
   private final Date date;
   private final int value;
@@ -16,10 +20,12 @@ class MonthCellDescriptor {
   private boolean isSelected;
   private final boolean isToday;
   private final boolean isSelectable;
+
   private RangeState rangeState;
+  private ConfirmationState confirmationState;
 
   MonthCellDescriptor(Date date, boolean currentMonth, boolean selectable, boolean selected,
-      boolean today, int value, RangeState rangeState) {
+      boolean today, int value, RangeState rangeState, ConfirmationState confirmationState) {
     this.date = date;
     isCurrentMonth = currentMonth;
     isSelectable = selectable;
@@ -27,6 +33,7 @@ class MonthCellDescriptor {
     isToday = today;
     this.value = value;
     this.rangeState = rangeState;
+    this.confirmationState = confirmationState;
   }
 
   public Date getDate() {
@@ -57,6 +64,10 @@ class MonthCellDescriptor {
     return rangeState;
   }
 
+    public ConfirmationState getConfirmationState() {
+        return confirmationState;
+    }
+
   public void setRangeState(RangeState rangeState) {
     this.rangeState = rangeState;
   }
@@ -69,9 +80,11 @@ class MonthCellDescriptor {
     return "MonthCellDescriptor{"
         + "date="
         + date
-        + ", value="
+        + ", ( confirmationState="
+        + confirmationState
+        + " ), value="
         + value
-        + ", isCurrentMonth="
+        + "), isCurrentMonth="
         + isCurrentMonth
         + ", isSelected="
         + isSelected

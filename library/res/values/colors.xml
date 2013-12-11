@@ -10,4 +10,6 @@
   <color name="calendar_text_active">#ff778088</color>
   <color name="calendar_text_selected">#ffffffff</color>
   <color name="calendar_text_unselectable">#7f778088</color>
+  <color name="calendar_state_confirmed">#ff00ff00</color>
+  <color name="calendar_state_unconfirmed">#ffff0000</color>
 </resources>

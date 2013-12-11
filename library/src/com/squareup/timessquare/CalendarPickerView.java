@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.squareup.timessquare.MonthCellDescriptor.RangeState;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,6 +70,7 @@ public class CalendarPickerView extends ListView {
   private final List<List<List<MonthCellDescriptor>>> cells =
       new ArrayList<List<List<MonthCellDescriptor>>>();
   final List<Calendar> selectedCals = new ArrayList<Calendar>();
+  private HashMap<Date, MonthCellDescriptor.ConfirmationState> confirmationStates;
   private Calendar minCal;
   private Calendar maxCal;
   private Calendar monthCounter;
@@ -104,6 +107,11 @@ public class CalendarPickerView extends ListView {
     }
   }
 
+
+    public FluentInitializer init(Date minDate, Date maxDate, Locale locale) {
+        return init(minDate, maxDate, locale, null);
+    }
+
   /**
    * Both date parameters must be non-null and their {@link Date#getTime()} must not return 0. Time
    * of day will be ignored.  For instance, if you pass in {@code minDate} as 11/16/2012 5:15pm and
@@ -121,7 +129,7 @@ public class CalendarPickerView extends ListView {
    * @param minDate Earliest selectable date, inclusive.  Must be earlier than {@code maxDate}.
    * @param maxDate Latest selectable date, exclusive.  Must be later than {@code minDate}.
    */
-  public FluentInitializer init(Date minDate, Date maxDate, Locale locale) {
+  public FluentInitializer init(Date minDate, Date maxDate, Locale locale, HashMap<Date, MonthCellDescriptor.ConfirmationState> confirmationStates) {
     if (minDate == null || maxDate == null) {
       throw new IllegalArgumentException(
           "minDate and maxDate must be non-null.  " + dbg(minDate, maxDate));
@@ -136,6 +144,12 @@ public class CalendarPickerView extends ListView {
     }
     if (locale == null) {
       throw new IllegalArgumentException("Locale is null.");
+    }
+
+    if (confirmationStates == null) {
+        this.confirmationStates = new HashMap<Date, MonthCellDescriptor.ConfirmationState>(0);
+    } else {
+        this.confirmationStates = (HashMap<Date, MonthCellDescriptor.ConfirmationState>)confirmationStates.clone();
     }
 
     // Make sure that all calendar instances use the same locale.
@@ -157,7 +171,7 @@ public class CalendarPickerView extends ListView {
     // Clear out any previously-selected dates/cells.
     selectedCals.clear();
     selectedCells.clear();
-
+    confirmationStates.clear();
     // Clear previous state.
     cells.clear();
     months.clear();
@@ -575,9 +589,14 @@ public class CalendarPickerView extends ListView {
           }
         }
 
+        MonthCellDescriptor.ConfirmationState confirmationState = MonthCellDescriptor.ConfirmationState.UNKNOWN;
+        if (confirmationStates.get(cal.getTime()) != null) {
+            confirmationState = confirmationStates.get(cal.getTime());
+        }
+
         weekCells.add(
             new MonthCellDescriptor(date, isCurrentMonth, isSelectable, isSelected, isToday, value,
-                rangeState));
+                rangeState, confirmationState));
         cal.add(DATE, 1);
       }
     }

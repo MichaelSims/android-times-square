@@ -18,7 +18,14 @@
   <item app:state_today="true">
     <color android:color="@color/calendar_text_active"/>
   </item>
+    <item app:state_confirmation_unconfirmed="true">
+        <color android:color="@color/calendar_state_unconfirmed"/>
+    </item>
+    <item app:state_confirmation_confirmed="true">
+        <color android:color="@color/calendar_state_confirmed"/>
+    </item>
   <item>
     <color android:color="@color/calendar_active_month_bg"/>
   </item>
+
 </selector>

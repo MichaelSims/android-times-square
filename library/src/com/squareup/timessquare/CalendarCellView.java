@@ -27,11 +27,21 @@ public class CalendarCellView extends TextView {
   private static final int[] STATE_RANGE_LAST = {
       R.attr.state_range_last
   };
+  private static final int[] STATE_UNKNOWN = {
+      R.attr.state_confirmation_unknown
+  };
+  private static final int[] STATE_CONFIRMED = {
+      R.attr.state_confirmation_confirmed
+  };
+  private static final int[] STATE_UNCONFIRMED = {
+      R.attr.state_confirmation_unconfirmed
+  };
 
   private boolean isSelectable = false;
   private boolean isCurrentMonth = false;
   private boolean isToday = false;
   private RangeState rangeState = RangeState.NONE;
+  private MonthCellDescriptor.ConfirmationState confirmationState = MonthCellDescriptor.ConfirmationState.UNKNOWN;
 
   public CalendarCellView(Context context) {
     super(context);
@@ -65,6 +75,11 @@ public class CalendarCellView extends TextView {
     refreshDrawableState();
   }
 
+  public void setConfirmationState(MonthCellDescriptor.ConfirmationState confirmationState) {
+    this.confirmationState = confirmationState;
+    refreshDrawableState();
+  }
+
   @Override protected int[] onCreateDrawableState(int extraSpace) {
     final int[] drawableState = super.onCreateDrawableState(extraSpace + 4);
 
@@ -80,12 +95,18 @@ public class CalendarCellView extends TextView {
       mergeDrawableStates(drawableState, STATE_TODAY);
     }
 
-    if (rangeState == MonthCellDescriptor.RangeState.FIRST) {
-      mergeDrawableStates(drawableState, STATE_RANGE_FIRST);
-    } else if (rangeState == MonthCellDescriptor.RangeState.MIDDLE) {
-      mergeDrawableStates(drawableState, STATE_RANGE_MIDDLE);
-    } else if (rangeState == RangeState.LAST) {
-      mergeDrawableStates(drawableState, STATE_RANGE_LAST);
+//    if (rangeState == MonthCellDescriptor.RangeState.FIRST) {
+//      mergeDrawableStates(drawableState, STATE_RANGE_FIRST);
+//    } else if (rangeState == MonthCellDescriptor.RangeState.MIDDLE) {
+//      mergeDrawableStates(drawableState, STATE_RANGE_MIDDLE);
+//    } else if (rangeState == RangeState.LAST) {
+//      mergeDrawableStates(drawableState, STATE_RANGE_LAST);
+//    }
+
+    if (confirmationState == MonthCellDescriptor.ConfirmationState.CONFIRMED) {
+        mergeDrawableStates(drawableState, STATE_CONFIRMED);
+    } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED) {
+        mergeDrawableStates(drawableState, STATE_UNCONFIRMED);
     }
 
     return drawableState;
