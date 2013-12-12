@@ -147,9 +147,6 @@ public class CalendarCellView extends TextView {
 
         LayerDrawable layerList = new LayerDrawable(layers);
         setBackground(layerList.getCurrent());
-
-        // Text Color
-
     }
 }
 
