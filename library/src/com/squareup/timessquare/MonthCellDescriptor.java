@@ -10,9 +10,10 @@ public class MonthCellDescriptor {
     NONE, FIRST, MIDDLE, LAST
   }
 
-    public enum ConfirmationState {
-        UNKNOWN, UNCONFIRMED, CONFIRMED
-    }
+  public enum ConfirmationState {
+    UNKNOWN, UNCONFIRMED, CONFIRMED, UNCONFIRMED_FUTURE
+  }
+
 
   private final Date date;
   private final int value;
@@ -20,6 +21,7 @@ public class MonthCellDescriptor {
   private boolean isSelected;
   private final boolean isToday;
   private final boolean isSelectable;
+
 
   private RangeState rangeState;
   private ConfirmationState confirmationState;
