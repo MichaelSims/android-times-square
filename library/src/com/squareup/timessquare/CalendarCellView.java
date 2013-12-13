@@ -4,9 +4,6 @@ package com.squareup.timessquare;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 import com.squareup.timessquare.MonthCellDescriptor.RangeState;
@@ -31,7 +28,18 @@ public class CalendarCellView extends TextView {
     private static final int[] STATE_RANGE_LAST = {
             R.attr.state_range_last
     };
-
+    private static final int[] STATE_CONFIRMATION_CONFIRMED = {
+            R.attr.state_confirmation_confirmed
+    };
+    private static final int[] STATE_CONFIRMATION_UNCONFIRMED_PAST = {
+            R.attr.state_confirmation_unconfirmed_past
+    };
+    private static final int[] STATE_CONFIRMATION_UNCONFIRMED_FUTURE = {
+            R.attr.state_confirmation_unconfirmed_future
+    };
+    private static final int[] STATE_CONFIRMATION_UNKNOWN = {
+            R.attr.state_confirmation_unknown
+    };
 
     private boolean isSelectable = false;
     private boolean isCurrentMonth = false;
@@ -88,91 +96,101 @@ public class CalendarCellView extends TextView {
 
     }
 
-    @Override
-    public void refreshDrawableState() {
-        super.refreshDrawableState();
+//    @Override
+//    public void refreshDrawableState() {
+//        super.refreshDrawableState();
+//
+//        int numLayers = 0;
+//
+//
+//        // background color
+//        Drawable backgroundDrawable = null;
+//        if (!isCurrentMonth) {
+//            backgroundDrawable = getResources().getDrawable(R.drawable.inactive);
+//            setTextColor(getResources().getColor(R.color.calendar_text_inactive));
+//        } else {
+//            if (confirmationState == MonthCellDescriptor.ConfirmationState.CONFIRMED) {
+//                backgroundDrawable = getResources().getDrawable(R.drawable.confirmed);
+//                setTextColor(Color.WHITE);
+//            } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED) {
+//                backgroundDrawable = getResources().getDrawable(R.drawable.unconfirmed);
+//                setTextColor(Color.WHITE);
+//            } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED_FUTURE) {
+//                backgroundDrawable = getResources().getDrawable(R.drawable.active);
+//                setTextColor(Color.BLACK);
+//            } else {    // confirmationState == MonthCellDescriptor.ConfirmationState.UNKNOWN
+//                backgroundDrawable = getResources().getDrawable(R.drawable.active);
+//                setTextColor(getResources().getColor(R.color.calendar_text_inactive));
+//            }
+//        }
+//
+//        numLayers++;
+//
+//        // today
+//        Drawable todayDrawable = null;
+//        if (isToday) {
+//            numLayers++;
+//            todayDrawable = getResources().getDrawable(R.drawable.today);
+//        }
+//
+//        // selected
+//        Drawable selectDrawable = null;
+//        if (isSelected() || isPressed()) {
+//            numLayers++;
+//            selectDrawable = getResources().getDrawable(R.drawable.selected);
+//        }
+//
+//        int layerIndex = 0;
+//        Drawable[] layers = new Drawable[numLayers];
+//        layers[layerIndex++] = backgroundDrawable;
+//
+//
+//        if (todayDrawable != null) {
+//            layers[layerIndex++] = todayDrawable;
+//        }
+//
+//        if (selectDrawable != null) {
+//            layers[layerIndex++] = selectDrawable;
+//        }
+//
+//        LayerDrawable layerList = new LayerDrawable(layers);
+//        setBackground(layerList.getCurrent());
+//    }
 
-        int numLayers = 0;
 
+  @Override protected int[] onCreateDrawableState(int extraSpace) {
+    final int[] drawableState = super.onCreateDrawableState(extraSpace + 4);
 
-        // background color
-        Drawable backgroundDrawable = null;
-        if (!isCurrentMonth) {
-            backgroundDrawable = getResources().getDrawable(R.drawable.inactive);
-            setTextColor(getResources().getColor(R.color.calendar_text_inactive));
-        } else {
-            if (confirmationState == MonthCellDescriptor.ConfirmationState.CONFIRMED) {
-                backgroundDrawable = getResources().getDrawable(R.drawable.confirmed);
-                setTextColor(Color.WHITE);
-            } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED) {
-                backgroundDrawable = getResources().getDrawable(R.drawable.unconfirmed);
-                setTextColor(Color.WHITE);
-            } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED_FUTURE) {
-                backgroundDrawable = getResources().getDrawable(R.drawable.active);
-                setTextColor(Color.BLACK);
-            } else {    // confirmationState == MonthCellDescriptor.ConfirmationState.UNKNOWN
-                backgroundDrawable = getResources().getDrawable(R.drawable.active);
-                setTextColor(getResources().getColor(R.color.calendar_text_inactive));
-            }
-        }
-
-        numLayers++;
-
-        // today
-        Drawable todayDrawable = null;
-        if (isToday) {
-            numLayers++;
-            todayDrawable = getResources().getDrawable(R.drawable.today);
-        }
-
-        // selected
-        Drawable selectDrawable = null;
-        if (isSelected() || isPressed()) {
-            numLayers++;
-            selectDrawable = getResources().getDrawable(R.drawable.selected);
-        }
-
-        int layerIndex = 0;
-        Drawable[] layers = new Drawable[numLayers];
-        layers[layerIndex++] = backgroundDrawable;
-
-
-        if (todayDrawable != null) {
-            layers[layerIndex++] = todayDrawable;
-        }
-
-        if (selectDrawable != null) {
-            layers[layerIndex++] = selectDrawable;
-        }
-
-        LayerDrawable layerList = new LayerDrawable(layers);
-        setBackground(layerList.getCurrent());
+    if (isSelectable) {
+      mergeDrawableStates(drawableState, STATE_SELECTABLE);
     }
-}
 
-//  @Override protected int[] onCreateDrawableState(int extraSpace) {
-//    final int[] drawableState = super.onCreateDrawableState(extraSpace + 4);
-//
-//    if (isSelectable) {
-//      mergeDrawableStates(drawableState, STATE_SELECTABLE);
-//    }
-//
-//    if (isCurrentMonth) {
-//      mergeDrawableStates(drawableState, STATE_CURRENT_MONTH);
-//    }
-//
-//    if (isToday) {
-//      mergeDrawableStates(drawableState, STATE_TODAY);
-//    }
-//
-//    if (rangeState == MonthCellDescriptor.RangeState.FIRST) {
-//      mergeDrawableStates(drawableState, STATE_RANGE_FIRST);
-//    } else if (rangeState == MonthCellDescriptor.RangeState.MIDDLE) {
-//      mergeDrawableStates(drawableState, STATE_RANGE_MIDDLE);
-//    } else if (rangeState == RangeState.LAST) {
-//      mergeDrawableStates(drawableState, STATE_RANGE_LAST);
-//    }
-//
-//
-//    return drawableState;
-//  }
+    if (isCurrentMonth) {
+      mergeDrawableStates(drawableState, STATE_CURRENT_MONTH);
+    }
+
+    if (isToday) {
+      mergeDrawableStates(drawableState, STATE_TODAY);
+    }
+
+    if (rangeState == MonthCellDescriptor.RangeState.FIRST) {
+      mergeDrawableStates(drawableState, STATE_RANGE_FIRST);
+    } else if (rangeState == MonthCellDescriptor.RangeState.MIDDLE) {
+      mergeDrawableStates(drawableState, STATE_RANGE_MIDDLE);
+    } else if (rangeState == RangeState.LAST) {
+      mergeDrawableStates(drawableState, STATE_RANGE_LAST);
+    }
+
+      if (confirmationState == MonthCellDescriptor.ConfirmationState.CONFIRMED) {
+          mergeDrawableStates(drawableState, STATE_CONFIRMATION_CONFIRMED);
+      } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED_PAST) {
+          mergeDrawableStates(drawableState, STATE_CONFIRMATION_UNCONFIRMED_PAST);
+      } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED_FUTURE) {
+        mergeDrawableStates(drawableState, STATE_CONFIRMATION_UNCONFIRMED_FUTURE);
+      } else {  // confirmationState == MonthCellDescriptor.ConfirmationState.UNKNOWN
+        mergeDrawableStates(drawableState, STATE_CONFIRMATION_UNKNOWN);
+      }
+
+    return drawableState;
+  }
+}

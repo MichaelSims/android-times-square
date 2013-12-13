@@ -3,29 +3,129 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-  <item app:state_range_middle="true">
-    <color android:color="@color/calendar_selected_range_bg"/>
-  </item>
-  <item android:state_selected="true">
-    <color android:color="@color/calendar_selected_day_bg"/>
-  </item>
-  <item android:state_pressed="true">
-    <color android:color="@color/calendar_selected_day_bg"/>
-  </item>
-  <item app:state_current_month="false">
-    <color android:color="@color/calendar_inactive_month_bg"/>
-  </item>
-  <item app:state_today="true">
-    <color android:color="@color/calendar_text_active"/>
-  </item>
-    <item app:state_confirmation_unconfirmed="true">
-        <color android:color="@color/calendar_state_unconfirmed"/>
-    </item>
-    <item app:state_confirmation_confirmed="true">
-        <color android:color="@color/calendar_state_confirmed"/>
-    </item>
-  <item>
-    <color android:color="@color/calendar_active_month_bg"/>
-  </item>
+  <!--<item app:state_range_middle="true">-->
+    <!--<color android:color="@color/calendar_selected_range_bg"/>-->
+  <!--</item>-->
+  <!--<item android:state_selected="true">-->
+    <!--<color android:color="@color/calendar_selected_day_bg"/>-->
+  <!--</item>-->
+  <!--<item android:state_pressed="true">-->
+    <!--<color android:color="@color/calendar_selected_day_bg"/>-->
+  <!--</item>-->
+  <!--<item app:state_current_month="false">-->
+    <!--<color android:color="@color/calendar_inactive_month_bg"/>-->
+  <!--</item>-->
+  <!--<item app:state_today="true">-->
+    <!--<color android:color="@color/calendar_text_active"/>-->
+  <!--</item>-->
+    <!--<item app:state_confirmation_unconfirmed="true">-->
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<shape-->
+                <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:shape="rectangle">-->
+            <!--<solid android:color="@color/calendar_active_month_bg"/>-->
+        <!--</shape>        <color android:color="@color/calendar_state_unconfirmed"/>-->
+    <!--</item>-->
+    <!--<item app:state_confirmation_confirmed="true">-->
+        <!--<color android:color="@color/calendar_state_confirmed"/>-->
+    <!--</item>-->
+  <!--<item>-->
+    <!--<color android:color="@color/calendar_active_month_bg"/>-->
+  <!--</item>-->
+
+    <item app:state_current_month="false" android:drawable="@drawable/inactive"/>
+
+    <!-- confirmed -->
+    <item app:state_confirmation_confirmed="true"
+          app:state_today="false"
+          android:state_pressed="false"
+          android:state_selected="false"
+          android:drawable="@drawable/confirmed"/>
+
+    <item app:state_confirmation_confirmed="true"
+          app:state_today="false"
+          android:state_pressed="true"
+          android:drawable="@drawable/confirmed_selected"/>
+
+    <item app:state_confirmation_confirmed="true"
+          app:state_today="false"
+          android:state_selected="true"
+          android:drawable="@drawable/confirmed_selected"/>
+
+    <item app:state_confirmation_confirmed="true"
+          app:state_today="true"
+          android:state_pressed="false"
+          android:state_selected="false"
+          android:drawable="@drawable/confirmed_today"/>
+
+    <item app:state_confirmation_confirmed="true"
+          app:state_today="true"
+          android:state_pressed="true"
+          android:drawable="@drawable/confirmed_today_selected"/>
+
+    <item app:state_confirmation_confirmed="true"
+          app:state_today="true"
+          android:state_selected="true"
+          android:drawable="@drawable/confirmed_today_selected"/>
+
+    <!-- unconfirmed -->
+    <item app:state_confirmation_unconfirmed_past="true"
+          app:state_today="false"
+          android:state_pressed="false"
+          android:state_selected="false"
+          android:drawable="@drawable/unconfirmed"/>
+
+    <item app:state_confirmation_unconfirmed_past="true"
+          app:state_today="false"
+          android:state_pressed="true"
+          android:drawable="@drawable/unconfirmed_selected"/>
+
+    <item app:state_confirmation_unconfirmed_past="true"
+          app:state_today="false"
+          android:state_selected="true"
+          android:drawable="@drawable/unconfirmed_selected"/>
+
+    <item app:state_confirmation_unconfirmed_past="true"
+          app:state_today="true"
+          android:state_pressed="false"
+          android:state_selected="false"
+          android:drawable="@drawable/unconfirmed_today"/>
+
+    <item app:state_confirmation_unconfirmed_past="true"
+          app:state_today="true"
+          android:state_pressed="true"
+          android:drawable="@drawable/unconfirmed_today_selected"/>
+
+    <item app:state_confirmation_unconfirmed_past="true"
+          app:state_today="true"
+          android:state_selected="true"
+          android:drawable="@drawable/unconfirmed_today_selected"/>
+
+    <!-- active/unconfirmed_future -->
+    <item app:state_today="false"
+          android:state_pressed="false"
+          android:state_selected="false"
+          android:drawable="@drawable/active"/>
+
+    <item app:state_today="false"
+          android:state_pressed="true"
+          android:drawable="@drawable/active_selected"/>
+
+    <item app:state_today="false"
+          android:state_selected="true"
+          android:drawable="@drawable/active_selected"/>
+
+    <item app:state_today="true"
+          android:state_pressed="false"
+          android:state_selected="false"
+          android:drawable="@drawable/active_today"/>
+
+    <item app:state_today="true"
+          android:state_pressed="true"
+          android:drawable="@drawable/active_today_selected"/>
+
+    <item app:state_today="true"
+          android:state_selected="true"
+          android:drawable="@drawable/active_today_selected"/>
 
 </selector>

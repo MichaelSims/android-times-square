@@ -11,7 +11,7 @@ public class MonthCellDescriptor {
   }
 
   public enum ConfirmationState {
-    UNKNOWN, UNCONFIRMED, CONFIRMED, UNCONFIRMED_FUTURE
+    UNKNOWN, UNCONFIRMED_PAST, CONFIRMED, UNCONFIRMED_FUTURE
   }
 
 

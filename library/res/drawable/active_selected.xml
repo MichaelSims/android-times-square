@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="rectangle">
-    <solid android:color="@color/calendar_state_confirmed_bg"/>
+       android:shape="rectangle">
+    <solid android:color="@color/calendar_active_month_selected_bg"/>
 </shape>
