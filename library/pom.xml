@@ -7,7 +7,6 @@
     <groupId>com.squareup</groupId>
     <artifactId>android-times-square-parent</artifactId>
     <version>1.0.4-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>android-times-square</artifactId>
