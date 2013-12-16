@@ -96,67 +96,6 @@ public class CalendarCellView extends TextView {
 
     }
 
-//    @Override
-//    public void refreshDrawableState() {
-//        super.refreshDrawableState();
-//
-//        int numLayers = 0;
-//
-//
-//        // background color
-//        Drawable backgroundDrawable = null;
-//        if (!isCurrentMonth) {
-//            backgroundDrawable = getResources().getDrawable(R.drawable.inactive);
-//            setTextColor(getResources().getColor(R.color.calendar_text_inactive));
-//        } else {
-//            if (confirmationState == MonthCellDescriptor.ConfirmationState.CONFIRMED) {
-//                backgroundDrawable = getResources().getDrawable(R.drawable.confirmed);
-//                setTextColor(Color.WHITE);
-//            } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED) {
-//                backgroundDrawable = getResources().getDrawable(R.drawable.unconfirmed);
-//                setTextColor(Color.WHITE);
-//            } else if (confirmationState == MonthCellDescriptor.ConfirmationState.UNCONFIRMED_FUTURE) {
-//                backgroundDrawable = getResources().getDrawable(R.drawable.active);
-//                setTextColor(Color.BLACK);
-//            } else {    // confirmationState == MonthCellDescriptor.ConfirmationState.UNKNOWN
-//                backgroundDrawable = getResources().getDrawable(R.drawable.active);
-//                setTextColor(getResources().getColor(R.color.calendar_text_inactive));
-//            }
-//        }
-//
-//        numLayers++;
-//
-//        // today
-//        Drawable todayDrawable = null;
-//        if (isToday) {
-//            numLayers++;
-//            todayDrawable = getResources().getDrawable(R.drawable.today);
-//        }
-//
-//        // selected
-//        Drawable selectDrawable = null;
-//        if (isSelected() || isPressed()) {
-//            numLayers++;
-//            selectDrawable = getResources().getDrawable(R.drawable.selected);
-//        }
-//
-//        int layerIndex = 0;
-//        Drawable[] layers = new Drawable[numLayers];
-//        layers[layerIndex++] = backgroundDrawable;
-//
-//
-//        if (todayDrawable != null) {
-//            layers[layerIndex++] = todayDrawable;
-//        }
-//
-//        if (selectDrawable != null) {
-//            layers[layerIndex++] = selectDrawable;
-//        }
-//
-//        LayerDrawable layerList = new LayerDrawable(layers);
-//        setBackground(layerList.getCurrent());
-//    }
-
 
   @Override protected int[] onCreateDrawableState(int extraSpace) {
     final int[] drawableState = super.onCreateDrawableState(extraSpace + 4);
