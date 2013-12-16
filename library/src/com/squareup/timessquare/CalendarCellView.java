@@ -45,7 +45,8 @@ public class CalendarCellView extends TextView {
     private boolean isCurrentMonth = false;
     private boolean isToday = false;
     private RangeState rangeState = RangeState.NONE;
-    private MonthCellDescriptor.ConfirmationState confirmationState = MonthCellDescriptor.ConfirmationState.UNKNOWN;
+    private MonthCellDescriptor.ConfirmationState confirmationState =
+            MonthCellDescriptor.ConfirmationState.UNKNOWN;
 
 
     public CalendarCellView(Context context) {

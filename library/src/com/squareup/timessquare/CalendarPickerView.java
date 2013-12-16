@@ -129,7 +129,8 @@ public class CalendarPickerView extends ListView {
    * @param minDate Earliest selectable date, inclusive.  Must be earlier than {@code maxDate}.
    * @param maxDate Latest selectable date, exclusive.  Must be later than {@code minDate}.
    */
-  public FluentInitializer init(Date minDate, Date maxDate, Locale locale, HashMap<Date, MonthCellDescriptor.ConfirmationState> confirmationStates) {
+  public FluentInitializer init(Date minDate, Date maxDate, Locale locale, HashMap<Date,
+          MonthCellDescriptor.ConfirmationState> confirmationStates) {
     if (minDate == null || maxDate == null) {
       throw new IllegalArgumentException(
           "minDate and maxDate must be non-null.  " + dbg(minDate, maxDate));
@@ -149,7 +150,8 @@ public class CalendarPickerView extends ListView {
     if (confirmationStates == null) {
         this.confirmationStates = new HashMap<Date, MonthCellDescriptor.ConfirmationState>(0);
     } else {
-        this.confirmationStates = (HashMap<Date, MonthCellDescriptor.ConfirmationState>)confirmationStates.clone();
+        this.confirmationStates =
+                (HashMap<Date, MonthCellDescriptor.ConfirmationState>) confirmationStates.clone();
     }
 
     // Make sure that all calendar instances use the same locale.
@@ -343,7 +345,7 @@ public class CalendarPickerView extends ListView {
         }
       } else if (dateListener != null) {
         boolean wasSelected = doSelectDate(clickedDate, cell);
-        
+
         if (wasSelected) {
           dateListener.onDateSelected(clickedDate);
         } else {
@@ -589,7 +591,8 @@ public class CalendarPickerView extends ListView {
           }
         }
 
-        MonthCellDescriptor.ConfirmationState confirmationState = MonthCellDescriptor.ConfirmationState.UNKNOWN;
+        MonthCellDescriptor.ConfirmationState confirmationState =
+                MonthCellDescriptor.ConfirmationState.UNKNOWN;
         if (confirmationStates.get(cal.getTime()) != null) {
             confirmationState = confirmationStates.get(cal.getTime());
         }
@@ -681,14 +684,14 @@ public class CalendarPickerView extends ListView {
   }
 
   /**
-   * Interface to be notified when a new date is selected or unselected. This will only be called when the user
-   * initiates the date selection.  If you call {@link #selectDate(Date)} this listener will not be
-   * notified.
+   * Interface to be notified when a new date is selected or unselected. This will only be
+   * called when the user initiates the date selection.  If you call {@link #selectDate(Date)}
+   * this listener will not be notified.
    *
    * @see #setOnDateSelectedListener(OnDateSelectedListener)
    */
   public interface OnDateSelectedListener {
-    void onDateSelected(Date date);  
+    void onDateSelected(Date date);
 
     void onDateUnselected(Date date);
   }
