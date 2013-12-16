@@ -7,7 +7,6 @@
         <groupId>com.squareup</groupId>
         <artifactId>android-times-square-parent</artifactId>
         <version>1.0.4-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>android-times-square</artifactId>
@@ -45,7 +44,6 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>test</testSourceDirectory>
 
         <plugins>
             <plugin>
@@ -66,6 +64,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
