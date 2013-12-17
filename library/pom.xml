@@ -9,6 +9,7 @@
         <version>1.0.4-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.squareup</groupId>
     <artifactId>android-times-square</artifactId>
     <name>Android-TimesSquare</name>
     <packaging>apklib</packaging>
