@@ -12,23 +12,35 @@
 
     <groupId>com.squareup</groupId>
     <artifactId>android-times-square</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <name>Android-TimesSquare</name>
     <packaging>apklib</packaging>
-    <name>android-times-square</name>
-
-    <repositories>
-        <repository>
-            <id>mercury</id>
-            <url>https://maven-vm.cloudapp.net/repository</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>android</groupId>
+            <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
-            <version>${platform.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>fest-android</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.robolectric</groupId>
+            <artifactId>robolectric</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>annotations</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -39,13 +51,7 @@
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>3.7.0</version>
                 <extensions>true</extensions>
-                <configuration>
-                    <sdk>
-                        <platform>${api.platform}</platform>
-                    </sdk>
-                </configuration>
                 <executions>
                     <execution>
                         <id>create-all-formats</id>
@@ -63,7 +69,7 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>attach-artifact</goal>
                         </goals>
