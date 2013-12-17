@@ -45,7 +45,6 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>test</testSourceDirectory>
 
         <plugins>
             <plugin>
@@ -66,6 +65,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
