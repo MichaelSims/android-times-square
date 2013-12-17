@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.mercury</groupId>
-        <artifactId>Drops-Android</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
     </parent>
 
     <groupId>com.squareup</groupId>
@@ -16,7 +16,7 @@
 
     <name>Android-TimesSquare (Parent)</name>
     <description>Android component for picking a date on a calendar.</description>
-    <url>https://github.com/JonWatson/android-times-square</url>
+    <url>https://github.com/square/android-times-square</url>
     <inceptionYear>2012</inceptionYear>
 
     <modules>
@@ -24,9 +24,9 @@
     </modules>
 
     <scm>
-        <url>http://github.com/JonWatson/android-times-square</url>
-        <connection>scm:git:git://github.com/JonWatson/android-times-square.git</connection>
-        <developerConnection>scm:git:git@github.com:JonWatson/android-times-square.git</developerConnection>
+        <url>http://github.com/square/android-times-square</url>
+        <connection>scm:git:git://github.com/square/android-times-square.git</connection>
+        <developerConnection>scm:git:git@github.com:square/android-times-square.git</developerConnection>
     </scm>
 
     <licenses>
