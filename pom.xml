@@ -3,18 +3,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.mercury</groupId>
-        <artifactId>Drops-Android</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
     <groupId>com.squareup</groupId>
     <artifactId>android-times-square-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0.4-SNAPSHOT</version>
 
-    <name>Android-TimesSquare (Parent)</name>
+    <name>android-times-square-parent</name>
     <description>Android component for picking a date on a calendar.</description>
     <url>https://github.com/square/android-times-square</url>
     <inceptionYear>2012</inceptionYear>
@@ -22,6 +16,13 @@
     <modules>
         <module>library</module>
     </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <api.platform>18</api.platform>
+        <platform.version>4.3_r2</platform.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    </properties>
 
     <scm>
         <url>http://github.com/square/android-times-square</url>
@@ -42,60 +43,18 @@
         <url>https://github.com/square/android-times-square/issues</url>
     </issueManagement>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <java.version>1.6</java.version>
-        <android.version>4.1.1.4</android.version>
-        <android.platform>17</android.platform>
 
-        <fest-assert.version>1.0.7</fest-assert.version>
-        <junit.version>4.10</junit.version>
-        <robolectric.version>2.2</robolectric.version>
-        <intellij.annotations.version>12.0</intellij.annotations.version>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.android</groupId>
-                <artifactId>android</artifactId>
-                <version>${android.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.robolectric</groupId>
-                <artifactId>robolectric</artifactId>
-                <version>${robolectric.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup</groupId>
-                <artifactId>fest-android</artifactId>
-                <version>${fest-assert.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.intellij</groupId>
-                <artifactId>annotations</artifactId>
-                <version>${intellij.annotations.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.0</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <source>1.6</source>
+                        <target>1.6</target>
                     </configuration>
                 </plugin>
 
@@ -105,7 +64,7 @@
                     <version>3.7.0</version>
                     <configuration>
                         <sdk>
-                            <platform>${android.platform}</platform>
+                            <platform>${api.platform}</platform>
                         </sdk>
                         <undeployBeforeDeploy>true</undeployBeforeDeploy>
                     </configuration>
