@@ -22,16 +22,6 @@
         </repository>
     </repositories>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <api.platform>18</api.platform>
-        <platform.version>4.3_r2</platform.version>
-        <java.version>1.6</java.version>
-        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
-        <maven-android-plugin.version>3.7.0</maven-android-plugin.version>
-        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
-        <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
-    </properties>
 
     <dependencies>
         <dependency>
