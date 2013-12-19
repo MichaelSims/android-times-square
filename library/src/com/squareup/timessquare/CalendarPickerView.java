@@ -95,7 +95,7 @@ public class CalendarPickerView extends ListView {
     maxCal = Calendar.getInstance(locale);
     monthCounter = Calendar.getInstance(locale);
     monthNameFormat = new SimpleDateFormat(context.getString(R.string.month_name_format), locale);
-    weekdayNameFormat = new SimpleDateFormat(context.getString(R.string.day_name_format), locale);
+    weekdayNameFormat = new SimpleDateFormat(context.getString(R.string.day_name_format));
     fullDateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
 
     if (isInEditMode()) {
